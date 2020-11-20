@@ -20,7 +20,16 @@ public class PrimeNumberTests {
                 assertNotEquals(0, number % i);
         }
     }
-	
+
+    @Property
+    public void primeFactorsShouldMultiplyToNumber(@InRange(min = "2", max = "999999999") Long a) {
+        System.out.println(a);
+        long result = 1;
+        for (long factor: PrimeCalculator.primeFactorization(a)) {
+            result *= factor;
+        }
+        assertEquals((long)a, result);
+    }
     // TODO: Write two more tests.
     
 }
