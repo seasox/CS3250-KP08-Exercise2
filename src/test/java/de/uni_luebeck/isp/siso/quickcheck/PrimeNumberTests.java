@@ -23,7 +23,6 @@ public class PrimeNumberTests {
 
     @Property
     public void primeFactorsShouldMultiplyToNumber(@InRange(min = "2", max = "999999999") Long a) {
-        System.out.println(a);
         long result = 1;
         for (long factor: PrimeCalculator.primeFactorization(a)) {
             result *= factor;
