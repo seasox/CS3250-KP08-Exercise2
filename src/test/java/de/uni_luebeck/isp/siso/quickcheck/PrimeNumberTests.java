@@ -5,6 +5,8 @@ import com.pholser.junit.quickcheck.generator.InRange;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(JUnitQuickcheck.class)
@@ -29,6 +31,12 @@ public class PrimeNumberTests {
         }
         assertEquals((long)a, result);
     }
-    // TODO: Write two more tests.
-    
+
+    @Property
+    public void primeFactorsShouldBeInAscendingOrder(@InRange(min = "2", max = "999999999") Long a) {
+        List<Long> primeFactors = PrimeCalculator.primeFactorization(a);
+        for (int i = 0; i < primeFactors.size() - 1; ++i) {
+            assertTrue(primeFactors.get(i) <= primeFactors.get(i+1));
+        }
+    }
 }
